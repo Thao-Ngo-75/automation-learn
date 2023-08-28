@@ -31,7 +31,7 @@ public class Topic_01_Check_Environment {
 
 	@Test
 	public void TC_01_Url() {
-		Assert.assertEquals(driver.getCurrentUrl(), "https://www.facebook.com/.");
+		Assert.assertEquals(driver.getCurrentUrl(), "https://www.facebook.com/");
 	}
 
 	@Test
