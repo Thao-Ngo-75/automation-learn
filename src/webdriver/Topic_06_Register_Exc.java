@@ -53,11 +53,14 @@ public class Topic_06_Register_Exc {
 		driver.findElement(By.cssSelector("button[title='Register']")).click();
 		
 		Assert.assertEquals(driver.findElement(By.cssSelector("li.success-msg")).getText(), "Thank you for registering with Main Website Store.");
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p[contains(text(),'ngo thao')]")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p[contains(text(),'automation')]")).isDisplayed());
+		Assert.assertEquals(driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText(),"");
+		Assert.assertEquals(driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText(),"");
 		
-	
+		driver.findElement(By.xpath("//div[@class='page-header-container']//span[text()='Account']")).click();
+		driver.findElement(By.xpath("//a[text()='Log Out']")).click();
 		
+		Assert.assertTrue(driver.findElement(By.xpath("//img[@src='http://live.techpanda.org/media/wysiwyg/test/logo.png']")).isDisplayed());
+		System.out.println("Back to Home page successful");
 		
 		
 	}
