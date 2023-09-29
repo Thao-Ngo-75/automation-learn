@@ -1,10 +1,13 @@
 package webdriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -33,11 +36,11 @@ public class Topic_12_User_Interaction {
 		driver.manage().window().maximize();
 	}
 
-	//@Test
+	// @Test
 	public void TC_01_hoverElement() {
 
 		driver.get("https://automationfc.github.io/jquery-tooltip/");
-		
+
 		action.moveToElement(driver.findElement(By.cssSelector("input#age"))).perform();
 		sleepInSecond(3);
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.ui-tooltip-content")).getText(),
@@ -45,25 +48,53 @@ public class Topic_12_User_Interaction {
 
 	}
 
-	@Test
+	// @Test
 	public void TC_02_fahasa() {
 
 		driver.get("https://www.fahasa.com/");
-		
+
 		action.moveToElement(driver.findElement(By.cssSelector("span.icon_menu"))).perform();
 		sleepInSecond(3);
-		action.moveToElement(driver.findElement(By.xpath("//span[text()='Đồ Chơi']"))).perform();
+		action.moveToElement(driver.findElement(By.xpath("//span[text()='Ä�á»“ ChÆ¡i']"))).perform();
 		sleepInSecond(2);
-		driver.findElement(By.xpath("//div[@class='fhs_column_stretch']//a[text()='Xếp Hình - Lắp Ghép']")).click();
+		driver.findElement(By.xpath("//div[@class='fhs_column_stretch']//a[text()='Xáº¿p HÃ¬nh - Láº¯p GhÃ©p']"))
+				.click();
 		sleepInSecond(2);
-		
-		Assert.assertTrue(driver.findElement(By.xpath("//strong[text()='Xếp Hình - Lắp Ghép']")).isDisplayed());
-		
-		
+
+		Assert.assertTrue(driver.findElement(By.xpath("//strong[text()='Xáº¿p HÃ¬nh - Láº¯p GhÃ©p']")).isDisplayed());
+
+	}
+
+	// @Test
+	public void TC_03_ClickAndHold() {
+
+		driver.get("https://automationfc.github.io/jquery-selectable/");
+
+		List<WebElement> listNumbers = driver.findElements(By.cssSelector("ol#selectable>li"));
+		action.clickAndHold(listNumbers.get(0)).moveToElement(listNumbers.get(7)).release().perform();
+		sleepInSecond(3);
+
+		List<WebElement> listNumbersSelected = driver.findElements(By.cssSelector("ol#selectable>li.ui-selected"));
+		Assert.assertEquals(listNumbersSelected.size(), 8);
+
 	}
 
 	@Test
-	public void TC_03_() {
+	public void TC_04_selectRandomItems() {
+		driver.get("https://automationfc.github.io/jquery-selectable/");
+
+		List<WebElement> listItemsRandom = driver.findElements(By.cssSelector("ol#selectable>li"));
+		action.keyDown(Keys.CONTROL)
+		.click(listItemsRandom.get(1))
+		.click(listItemsRandom.get(4))
+		.click(listItemsRandom.get(8))
+		.keyUp(Keys.CONTROL)
+		.perform();
+		
+		sleepInSecond(3);
+		
+		List<WebElement> listItemsSelected = driver.findElements(By.cssSelector("ol#selectable>li.ui-selected"));
+		Assert.assertEquals(listItemsSelected.size(), 3);
 
 	}
 
