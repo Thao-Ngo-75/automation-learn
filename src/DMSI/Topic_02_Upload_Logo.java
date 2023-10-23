@@ -71,8 +71,10 @@ public class Topic_02_Upload_Logo {
 		
 		Assert.assertTrue(driver.findElement(By.xpath("//button[text()='Replace']")).isDisplayed());
 		
-		action.moveToElement(driver.findElement(By.xpath("//button[@type='button']//img[contains(@src,'svg')]"))).click();
-		sleepInSecond(3);
+//		action.moveToElement(driver.findElement(By.xpath("//button[@type='button']//img[contains(@src,'svg')]"))).click();
+//		sleepInSecond(3);
+		
+		
 	}
 
 	@Test
