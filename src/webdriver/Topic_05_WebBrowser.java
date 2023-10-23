@@ -1,5 +1,6 @@
 package webdriver;
 
+import java.awt.Window;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -74,7 +75,7 @@ public class Topic_05_WebBrowser {
 		time.setScriptTimeout(5, TimeUnit.SECONDS);
 		
 		opt.window();
-		Window window = opt.window();
+		Window window = (Window) opt.window();
 		
 		Navigation nav = driver.navigate();
 		nav.back();

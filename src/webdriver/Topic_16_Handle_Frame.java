@@ -31,7 +31,7 @@ public class Topic_16_Handle_Frame {
 		driver.manage().window().maximize();
 	}
 
-	@Test
+//	@Test
 	public void TC_01_iFrame() {
 
 		driver.get("https://skills.kynaenglish.vn/");
@@ -65,6 +65,25 @@ public class Topic_16_Handle_Frame {
 		}
 		
 	}
+	@Test
+	public void TC_01_Kyna_Iframe() {
+		driver.get("https://skills.kynaenglish.vn/");
+		Assert.assertTrue(driver.findElement(By.xpath("//iframe[contains(@src,'kyna.vn')]")).isDisplayed());
+	     driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'kyna.vn')]")));
+	     String facebookLike = driver.findElement(By.xpath("//a[text()='Kyna.vn']/parent::div/following-sibling::div")).getText();
+	     System.out.println(facebookLike);
+	     Assert.assertEquals(facebookLike, "167K followers");
+	     driver.switchTo().defaultContent();	
+	     driver.switchTo().frame("cs_chat_iframe");    
+	     driver.findElement(By.cssSelector("div.button_bar")).click();
+	     sleepInSecond(5);     
+		driver.findElement(By.cssSelector("input.input_name")).sendKeys("Kim Khánh");
+		driver.findElement(By.cssSelector("input.input_phone")).sendKeys("0766625039");
+		new Select(driver.findElement(By.id("serviceSelect"))).selectByVisibleText("TƯ VẤN TUYỂN SINH");
+		driver.findElement(By.name("message")).sendKeys("Tư vấn khóa học Excel");
+		sleepInSecond(3);
+	}
+
 
 	//@Test
 	public void TC_02_Frame() {
